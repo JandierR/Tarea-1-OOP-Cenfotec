@@ -19,11 +19,16 @@ public class GestorCuenta {
             return "Deposito de $" + monto + " realizado exitosamente a la cuenta '" + numCuenta + "'";
         }
 
-        return "Cuenta no encontrada!";
+        return "Deposito invalido";
     }
 
-    public String retirar(double monto) {
-        return "Retiro de $" + monto + " realizado exitosamente";
+    public String retirar(double monto, String numCuenta) {
+        Cuenta cuenta = buscarPorNumCuenta(numCuenta);
+        if (cuenta != null) {
+            cuenta.setSaldo(cuenta.getSaldo() - monto);
+            return "Retiro de $" + monto + " realizado exitosamente";
+        }
+        return "Retiro invalido";
     }
 
     public void registrarCuenta(String nombreCliente, double montoInicial) {
