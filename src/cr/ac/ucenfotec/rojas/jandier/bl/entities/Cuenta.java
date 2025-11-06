@@ -7,11 +7,14 @@ public class Cuenta {
     private String numCuenta;
     private double saldo;
     private LocalDate fechaCreacion;
-    private String duenio;
+    private String cedulaCliente;
+    private String nombreCliente;
 
-    public Cuenta(String nombreCliente, double monto) {
+    public Cuenta(String nombreCliente,String cedulaCliente, double monto, String numCuenta) {
+        this.nombreCliente = nombreCliente;
         this.saldo = monto;
-        this.duenio = nombreCliente;
+        this.cedulaCliente = cedulaCliente;
+        this.numCuenta = numCuenta;
         fechaCreacion = LocalDate.now();
     }
 
@@ -47,22 +50,48 @@ public class Cuenta {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getDuenio() {
-        return duenio;
+    public String getCedulaCliente() {
+        return cedulaCliente;
     }
 
-    public void setDuenio(String duenio) {
-        this.duenio = duenio;
+    public void setCedulaCliente(String cedulaCliente) {
+        this.cedulaCliente = cedulaCliente;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
     @Override
     public String toString() {
-        return "cr.ac.ucenfotec.rojas.jandier.bl.entities.Cuenta{" +
+        return "Cuenta{" +
                 "cantCuentas=" + cantCuentas +
                 ", numCuenta='" + numCuenta + '\'' +
                 ", saldo=" + saldo +
                 ", fechaCreacion=" + fechaCreacion +
-                ", duenio='" + duenio + '\'' +
+                ", cedulaCliente='" + cedulaCliente + '\'' +
+                ", nombreCliente='" + nombreCliente + '\'' +
                 '}';
+    }
+
+    public String depositar(double monto) {
+
+        if (monto > 0) {
+            saldo += monto;
+            return "Deposito realizado con exito";
+        }
+        return "Monto invalido";
+    }
+
+    public String retirar(double monto) {
+        if ((monto > 0) && (monto <= saldo)) {
+            saldo -= monto;
+            return "Retiro exitoso";
+        }
+        return "Monto invalido";
     }
 }
