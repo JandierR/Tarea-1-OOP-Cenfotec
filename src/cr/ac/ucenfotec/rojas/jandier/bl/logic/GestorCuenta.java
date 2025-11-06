@@ -46,7 +46,9 @@ public class GestorCuenta {
             return "Error --> No existe el cliente ingresado";
         }
 
-        cuentas.add(new Cuenta(nombreCliente, cedula, montoInicial, numCuenta));
+        Cuenta nuevaCuenta = new Cuenta(nombreCliente, cedula, montoInicial, numCuenta);
+        cuentas.add(nuevaCuenta);
+        gestorCliente.agregarCuentaCliente(nuevaCuenta, cedula);
         return "Cuenta registrada exitosamente!";
     }
 

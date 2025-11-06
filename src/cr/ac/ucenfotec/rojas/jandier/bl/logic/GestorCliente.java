@@ -14,8 +14,14 @@ public class GestorCliente {
         cuentas = new ArrayList<>();
     }
 
-    public void registrarCliente(String cedula, String nombre) {
-        clientes.add(new Cliente(cedula, nombre));
+    public String registrarCliente(String cedula, String nombre) {
+        Cliente cliente = buscarClientePorCedula(cedula);
+
+        if (cliente == null) {
+            clientes.add(new Cliente(cedula, nombre));
+            return "Cliente registrado exitosamente!";
+        }
+        return "Cliente ya existe";
     }
 
     public ArrayList<Cliente> getClientes() {
@@ -49,11 +55,20 @@ public class GestorCliente {
         return null;
     }
 
-    public double listarSaldoCuentas(String cedula) {
+    public ArrayList<Cuenta> listarSaldoCuentas(String cedula) {
         Cliente cliente = buscarClientePorCedula(cedula);
-        for (Cuenta cuenta : cliente.getCuentasDeCliente()) {
-           return cuenta.getSaldo();
+        if (cliente != null) {
+            return cliente.getCuentasDeCliente();
         }
-        return 0;
+        return null;
     }
+
+    public void agregarCuentaCliente(Cuenta cuenta, String cedula) {
+        Cliente cliente = buscarClientePorCedula(cedula);
+        if (cliente != null) {
+            cliente.agregarCuenta(cuenta);
+        }
+    }
+
+
 }
