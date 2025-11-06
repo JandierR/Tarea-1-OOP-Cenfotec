@@ -6,12 +6,14 @@ public class Operacion {
     private int numero;
     private String tipo;
     private LocalDate fechaOperacion;
+    private double monto;
 
 
-    public Operacion(int numero, String tipo, LocalDate fechaOperacion) {
+    public Operacion(int numero, double monto, LocalDate fechaOperacion, String tipo) {
         this.numero = numero;
-        this.tipo = tipo;
+        this.monto = monto;
         this.fechaOperacion = fechaOperacion;
+        this.tipo = tipo;
     }
 
     @Override
@@ -20,6 +22,7 @@ public class Operacion {
                 "numero=" + numero +
                 ", tipo='" + tipo + '\'' +
                 ", fechaOperacion=" + fechaOperacion +
+                ", monto=" + monto +
                 '}';
     }
 }

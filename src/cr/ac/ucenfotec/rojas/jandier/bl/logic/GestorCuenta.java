@@ -79,5 +79,15 @@ public class GestorCuenta {
         return false;
     }
 
+    public String obtenerOperacionesCuenta(String numCuenta) {
+        Cuenta cuenta = buscarPorNumCuenta(numCuenta);
+
+        if (cuenta == null) {
+            return "Error ---> Cuenta no encontrada";
+        }
+
+        return cuenta.listarOperaciones();
+
+    }
 
 }

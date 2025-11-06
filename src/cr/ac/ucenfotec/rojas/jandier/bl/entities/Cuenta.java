@@ -1,6 +1,7 @@
 package cr.ac.ucenfotec.rojas.jandier.bl.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Cuenta {
     private int cantCuentas;
@@ -9,6 +10,10 @@ public class Cuenta {
     private LocalDate fechaCreacion;
     private String cedulaCliente;
     private String nombreCliente;
+    private ArrayList<Operacion> operaciones;
+    private int contadorOperaciones;
+
+
 
     public Cuenta(String nombreCliente,String cedulaCliente, double monto, String numCuenta) {
         this.nombreCliente = nombreCliente;
@@ -16,6 +21,8 @@ public class Cuenta {
         this.cedulaCliente = cedulaCliente;
         this.numCuenta = numCuenta;
         fechaCreacion = LocalDate.now();
+        this.operaciones = new ArrayList<>();
+        contadorOperaciones = 0;
     }
 
     public int getCantCuentas() {
@@ -66,6 +73,14 @@ public class Cuenta {
         this.nombreCliente = nombreCliente;
     }
 
+    public ArrayList<Operacion> getOperaciones() {
+        return operaciones;
+    }
+
+    public void setOperaciones(ArrayList<Operacion> operaciones) {
+        this.operaciones = operaciones;
+    }
+
     @Override
     public String toString() {
         return "Cuenta{" +
@@ -79,9 +94,11 @@ public class Cuenta {
     }
 
     public String depositar(double monto) {
-
         if (monto > 0) {
             saldo += monto;
+            contadorOperaciones++;
+            Operacion operacion = new Operacion(contadorOperaciones, monto, LocalDate.now(), "Deposito");
+            operaciones.add(operacion);
             return "Deposito realizado con exito";
         }
         return "Monto invalido";
@@ -89,9 +106,24 @@ public class Cuenta {
 
     public String retirar(double monto) {
         if ((monto > 0) && (monto <= saldo)) {
+            contadorOperaciones++;
+            Operacion operacion = new Operacion(contadorOperaciones, monto, LocalDate.now(), "Retiro");
+            operaciones.add(operacion);
             saldo -= monto;
             return "Retiro exitoso";
         }
         return "Monto invalido";
+    }
+
+    public String listarOperaciones() {
+        if (operaciones.isEmpty()) {
+            return "No hay operaciones por el momento";
+        }
+
+        String operacion = "";
+        for (Operacion op : operaciones) {
+            operacion += " " + op.toString() + "\n";
+        }
+        return operacion;
     }
 }
