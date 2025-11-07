@@ -1,17 +1,19 @@
 package cr.ac.ucenfotec.rojas.jandier.bl.logic;
 
 import cr.ac.ucenfotec.rojas.jandier.bl.entities.Cuenta;
-
-import java.util.ArrayList;
+import cr.ac.ucenfotec.rojas.jandier.dl.Data;
 
 public class GestorCuenta {
 
-    private ArrayList<Cuenta> cuentas;
+    //    private ArrayList<Cuenta> cuentas;
     private GestorCliente gestorCliente;
+    private Data data;
 
     public GestorCuenta(GestorCliente gestorCliente) {
-        this.cuentas = new ArrayList<>();
+//        this.cuentas = new ArrayList<>();
         this.gestorCliente = gestorCliente;
+        data = new Data();
+
     }
 
     public String depositarEnCuenta(double monto, String numCuenta) {
@@ -47,13 +49,13 @@ public class GestorCuenta {
         }
 
         Cuenta nuevaCuenta = new Cuenta(nombreCliente, cedula, montoInicial, numCuenta);
-        cuentas.add(nuevaCuenta);
+        data.agregarCuenta(nuevaCuenta);
         gestorCliente.agregarCuentaCliente(nuevaCuenta, cedula);
         return "Cuenta registrada exitosamente!";
     }
 
     public Cuenta buscarPorNumCuenta(String numCuenta) {
-        for (Cuenta cuenta : cuentas) {
+        for (Cuenta cuenta : data.getCuentas()) {
             if (cuenta.getNumCuenta().equalsIgnoreCase(numCuenta)) {
                 return cuenta;
             }
@@ -71,12 +73,7 @@ public class GestorCuenta {
 //    }
 
     public boolean existeCuenta(String numCuenta) {
-        for (Cuenta cuenta : cuentas) {
-            if (cuenta.getNumCuenta().equalsIgnoreCase(numCuenta)) {
-                return true;
-            }
-        }
-        return false;
+        return buscarPorNumCuenta(numCuenta) != null;
     }
 
     public String obtenerOperacionesCuenta(String numCuenta) {
