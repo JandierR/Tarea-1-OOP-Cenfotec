@@ -19,10 +19,10 @@ public class Operacion {
     @Override
     public String toString() {
         return "Operacion{" +
-                "numero=" + numero +
-                ", tipo='" + tipo + '\'' +
-                ", fechaOperacion=" + fechaOperacion +
-                ", monto=" + monto +
+                "-- numero = " + numero +
+                "-- tipo = '" + tipo + '\'' +
+                "-- Fecha de operación = " + fechaOperacion +
+                "-- monto = " + monto +
                 '}';
     }
 }

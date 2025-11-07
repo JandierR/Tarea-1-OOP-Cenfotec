@@ -16,9 +16,9 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "cedula='" + cedula + '\'' +
-                ", nombre='" + nombre + '\'' +
+        return "Cliente: " +
+                "cedula = '" + cedula + '\'' +
+                "-- nombre = '" + nombre + '\'' +
                 '}';
     }
 

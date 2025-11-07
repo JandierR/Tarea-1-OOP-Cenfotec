@@ -84,12 +84,12 @@ public class Cuenta {
     @Override
     public String toString() {
         return "Cuenta{" +
-                "cantCuentas=" + cantCuentas +
-                ", numCuenta='" + numCuenta + '\'' +
-                ", saldo=" + saldo +
-                ", fechaCreacion=" + fechaCreacion +
-                ", cedulaCliente='" + cedulaCliente + '\'' +
-                ", nombreCliente='" + nombreCliente + '\'' +
+                " Cantidad cuentas = " + cantCuentas +
+                "-- Numero cuenta ='" + numCuenta + '\'' +
+                "-- Saldo = " + saldo +
+                "-- Fecha de creación = " + fechaCreacion +
+                "-- Cedula cliente = '" + cedulaCliente + '\'' +
+                "-- Nombre cliente = '" + nombreCliente + '\'' +
                 '}';
     }
 
