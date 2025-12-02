@@ -9,10 +9,10 @@ public class GestorCuenta {
     private GestorCliente gestorCliente;
     private Data data;
 
-    public GestorCuenta(GestorCliente gestorCliente) {
-//        this.cuentas = new ArrayList<>();
+    public GestorCuenta(Data data, GestorCliente gestorCliente) {
+//        this.cuentas = new ArrayList<>();\
         this.gestorCliente = gestorCliente;
-        data = new Data();
+
 
     }
 

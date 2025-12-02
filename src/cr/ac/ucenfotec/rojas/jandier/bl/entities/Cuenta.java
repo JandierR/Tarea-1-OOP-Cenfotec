@@ -125,5 +125,5 @@ public class Cuenta {
             operacion += " " + op.toString() + "\n";
         }
         return operacion;
-    }
+    }   
 }
