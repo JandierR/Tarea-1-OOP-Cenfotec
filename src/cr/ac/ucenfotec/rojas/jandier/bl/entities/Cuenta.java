@@ -3,8 +3,7 @@ package cr.ac.ucenfotec.rojas.jandier.bl.entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Cuenta {
-    private int cantCuentas;
+public abstract class Cuenta {
     private String numCuenta;
     private double saldo;
     private LocalDate fechaCreacion;
@@ -12,10 +11,11 @@ public class Cuenta {
     private String nombreCliente;
     private ArrayList<Operacion> operaciones;
     private int contadorOperaciones;
+    private String tipo;
 
 
 
-    public Cuenta(String nombreCliente,String cedulaCliente, double monto, String numCuenta) {
+    public Cuenta(String nombreCliente,String cedulaCliente, double monto, String numCuenta, String tipo) {
         this.nombreCliente = nombreCliente;
         this.saldo = monto;
         this.cedulaCliente = cedulaCliente;
@@ -23,14 +23,10 @@ public class Cuenta {
         fechaCreacion = LocalDate.now();
         this.operaciones = new ArrayList<>();
         contadorOperaciones = 0;
+        this.tipo = tipo;
     }
 
-    public int getCantCuentas() {
-        return cantCuentas;
-    }
-
-    public void setCantCuentas(int cantCuentas) {
-        this.cantCuentas = cantCuentas;
+    public Cuenta() {
     }
 
     public double getSaldo() {
@@ -81,16 +77,22 @@ public class Cuenta {
         this.operaciones = operaciones;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public String toString() {
-        return "Cuenta{" +
-                " Cantidad cuentas = " + cantCuentas +
-                "-- Numero cuenta ='" + numCuenta + '\'' +
-                "-- Saldo = " + saldo +
-                "-- Fecha de creación = " + fechaCreacion +
-                "-- Cedula cliente = '" + cedulaCliente + '\'' +
-                "-- Nombre cliente = '" + nombreCliente + '\'' +
-                '}';
+        return "Numero cuenta -> " + numCuenta + '\n' +
+                "Saldo -> " + saldo + "\n" +
+                "Fecha de creación -> " + fechaCreacion + "\n" +
+                "Cedula cliente -> " + cedulaCliente + '\n' +
+                "Nombre cliente -> " + nombreCliente + '\n' +
+                "Tipo de cuenta -> " + tipo + '\n';
     }
 
     public String depositar(double monto) {
@@ -125,5 +127,8 @@ public class Cuenta {
             operacion += " " + op.toString() + "\n";
         }
         return operacion;
-    }   
+    }
+
+    public abstract double cobrarComisiones();
+
 }

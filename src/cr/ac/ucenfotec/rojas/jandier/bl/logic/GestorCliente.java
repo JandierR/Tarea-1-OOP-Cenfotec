@@ -2,25 +2,29 @@ package cr.ac.ucenfotec.rojas.jandier.bl.logic;
 
 import cr.ac.ucenfotec.rojas.jandier.bl.entities.Cliente;
 import cr.ac.ucenfotec.rojas.jandier.bl.entities.Cuenta;
+import cr.ac.ucenfotec.rojas.jandier.bl.entities.CuentaAhorro;
+import cr.ac.ucenfotec.rojas.jandier.bl.entities.CuentaCorriente;
 import cr.ac.ucenfotec.rojas.jandier.dl.Data;
 
 import java.util.ArrayList;
 
 public class GestorCliente {
-//    private ArrayList<Cliente> clientes;
-//    private ArrayList<Cuenta> cuentas;
 
     private Data data;
+    private CuentaAhorro cuentaAhorro;
+    private CuentaCorriente cuentaCorriente;
 
     public GestorCliente() {
         data = new Data();
+        cuentaAhorro = new CuentaAhorro();
+        cuentaCorriente = new CuentaCorriente();
     }
 
     public String registrarCliente(String cedula, String nombre) {
         Cliente cliente = buscarClientePorCedula(cedula);
 
         if (cliente == null) {
-            data.agregarCliente( new Cliente(cedula,nombre));
+            data.agregarCliente(new Cliente(cedula, nombre));
             return "Cliente registrado exitosamente!";
         }
         return "Cliente ya existe";
